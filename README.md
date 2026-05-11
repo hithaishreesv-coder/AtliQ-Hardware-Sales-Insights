@@ -108,3 +108,11 @@ SELECT * FROM sales.customers;
 SELECT * FROM sales.transactions;
 
 SELECT * FROM sales.markets;
+
+During data exploration, the following data quality issues were identified:
+
+- Some sales amount values were zero or negative, which were invalid for sales analysis.
+- Some transactions were recorded in USD and needed to be converted into INR.
+- Markets such as New York and Paris were present, although the main business focus was India.
+- Currency values had formatting inconsistencies such as `INR` and `INR\r`.
+- Data cleaning was required before building the dashboard.
