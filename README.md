@@ -116,3 +116,134 @@ During data exploration, the following data quality issues were identified:
 - Markets such as New York and Paris were present, although the main business focus was India.
 - Currency values had formatting inconsistencies such as `INR` and `INR\r`.
 - Data cleaning was required before building the dashboard.
+
+Data Cleaning and Transformation
+
+Data cleaning was performed in Power BI using Power Query.
+
+The main cleaning steps included:
+
+Removed invalid sales amounts such as 0 and negative values
+Removed markets outside India, such as New York and Paris
+Converted USD currency values into INR
+Cleaned duplicate currency values
+Created a normalised sales amount column
+Converted date format into month-year format for better visualisation
+Prepared clean data for dashboard reporting
+Data Modelling
+
+After cleaning the data, relationships were created between the required tables in Power BI.
+
+The main tables used in the project were:
+
+Customers
+Transactions
+Markets
+Products
+Date
+
+The data model helped connect sales transactions with customer, product, market, and date information.
+
+DAX Measures
+
+The following DAX measures were created for analysis:
+
+Revenue
+Revenue = SUM('sales transactions'[norm_sales_amount])
+Sales Quantity
+Sales Qty = SUM('sales transactions'[sales_qty])
+Total Profit Margin
+Total Profit Margin = SUM('sales transactions'[Profit_Margin])
+Profit Margin Percentage
+Profit Margin % = DIVIDE([Total Profit Margin], [Revenue], 0)
+Revenue Contribution Percentage
+Revenue Contribution % =
+DIVIDE(
+    [Revenue],
+    CALCULATE(
+        [Revenue],
+        ALL('sales products'),
+        ALL('sales customers'),
+        ALL('sales markets')
+    )
+)
+Profit Margin Contribution Percentage
+Profit Margin Contribution % =
+DIVIDE(
+    [Total Profit Margin],
+    CALCULATE(
+        [Total Profit Margin],
+        ALL('sales products'),
+        ALL('sales customers'),
+        ALL('sales markets')
+    )
+)
+Dashboard Features
+
+The Power BI dashboard includes the following visuals and KPIs:
+
+Total Revenue
+Total Sales Quantity
+Total Profit Margin
+Revenue by Market
+Sales Quantity by Market
+Top 5 Customers
+Top 5 Products
+Revenue Trend
+Profit Margin Analysis
+Market-level sales performance
+Key Insights
+
+The dashboard helps answer important business questions such as:
+
+Which market is generating the highest revenue?
+Which market is underperforming?
+Which customers are contributing the most revenue?
+Which products are performing best?
+Is revenue increasing or declining over time?
+Which region needs more business attention?
+How much profit margin is generated from sales?
+Business Impact
+
+This dashboard helps the Sales Director and other stakeholders monitor business performance using real data.
+
+Instead of depending on verbal updates or multiple Excel files, the dashboard provides a clear view of sales performance in one place.
+
+The project supports:
+
+Faster decision-making
+Better sales tracking
+Improved visibility into business performance
+Reduced manual reporting time
+Data-driven business planning
+Files in this Repository
+
+This repository may include:
+
+Power BI dashboard file
+SQL queries used for data exploration
+Dashboard screenshots
+README documentation
+How to Use This Project
+Download or clone this repository.
+git clone https://github.com/your-username/AtliQ-Hardware-Sales-Insights.git
+Import the sales dataset into MySQL.
+Open Power BI Desktop.
+Connect Power BI to the MySQL database.
+Load the required tables.
+Apply data cleaning steps in Power Query.
+Create DAX measures.
+Build and view the dashboard.
+Conclusion
+
+The AtliQ Hardware Sales Insights Dashboard provides a clear and interactive view of business performance.
+
+By using Power BI, MySQL, Power Query, SQL, and DAX, this project shows how raw sales data can be cleaned, transformed, and visualised into meaningful insights.
+
+The dashboard helps identify declining sales trends, high-performing markets, top customers, and product-level performance, allowing the business to make better data-driven decisions.
+
+Author
+
+Hithaishree Salur Vijay
+
+Data Analyst | Power BI | SQL | Python | Machine Learning
